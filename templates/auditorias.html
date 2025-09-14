@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %} Auditorías - ISO 9001 {% endblock %}
+
+{% block content %}
+<h2>Gestión de Auditorías</h2>
+<p>Aquí se listan y gestionan las auditorías internas y externas de los proyectos.</p>
+
+<table border="1" cellpadding="10">
+    <tr>
+        <th>ID</th>
+        <th>Fecha</th>
+        <th>Responsable</th>
+        <th>Estado</th>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>2025-09-20</td>
+        <td>Juan Pérez</td>
+        <td>En Proceso</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>2025-10-01</td>
+        <td>Ana Gómez</td>
+        <td>Pendiente</td>
+    </tr>
+</table>
+{% endblock %}
