@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %} Riesgos - ISO 9001 {% endblock %}
+
+{% block content %}
+<h2>Gestión de Riesgos</h2>
+<p>Aquí se registran los riesgos identificados en los proyectos.</p>
+
+<table border="1" cellpadding="10">
+    <tr>
+        <th>ID</th>
+        <th>Riesgo</th>
+        <th>Impacto</th>
+        <th>Plan de Acción</th>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>Retraso en entregas</td>
+        <td>Alto</td>
+        <td>Establecer plan de contingencia con proveedores</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Falla en software</td>
+        <td>Medio</td>
+        <td>Pruebas adicionales antes de la entrega</td>
+    </tr>
+</table>
+{% endblock %}

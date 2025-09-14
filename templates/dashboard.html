@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Panel de Seguimiento</h1>
+
+<div>
+  <p>Cumplimiento SGC: {{ cumplimiento }}%</p>
+  <p>Auditorías este semestre: {{ auditorias }}</p>
+  <p>No conformidades abiertas: {{ no_conformidades }}</p>
+  <p>Satisfacción del cliente: {{ satisfaccion }}/5</p>
+</div>
+{% endblock %}

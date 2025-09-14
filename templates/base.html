@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>ISO 9001 - Sistema</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <div class="sidebar">
+    <h2>SGC • ISO9001</h2>
+    <ul>
+      <li><a href="{{ url_for('main.dashboard') }}">Dashboard</a></li>
+      <li><a href="{{ url_for('main.auditorias') }}">Auditorías</a></li>
+      <li><a href="{{ url_for('main.riesgos') }}">Riesgos</a></li>
+      <li><a href="{{ url_for('main.actividades') }}">Actividades</a></li>
+    </ul>
+  </div>
+  <div class="content">
+    {% block content %}{% endblock %}
+  </div>
+</body>
+</html>
