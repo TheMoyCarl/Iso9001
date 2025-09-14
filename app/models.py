@@ -41,4 +41,10 @@ class Riesgo(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     riesgo = db.Column(db.String(200), nullable=False)
     probabilidad = db.Column(db.String(50), nullable=False)
-    im
+    impacto = db.Column(db.String(50), nullable=False)
+    plan = db.Column(db.String(200), nullable=False)
+
+class Actividad(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    nombre = db.Column(db.String(200), nullable=False)
+    estado = db.Column(db.String(50), nullable=False)  # Pendiente, En curso, Hecho
