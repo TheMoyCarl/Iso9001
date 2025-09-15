@@ -17,6 +17,7 @@ def create_app():
 
     # Importar modelos para que SQLAlchemy los reconozca
     from app import models
+    from app import documental, formatos, capacitacion, indicadores
 
     # Registrar rutas
     from app.routes import main

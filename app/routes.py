@@ -1,5 +1,9 @@
-ffrom flask import Blueprint, render_template, request, redirect, url_for, flash
+from flask import Blueprint, render_template, request, redirect, url_for, flash
 from app.models import Proyecto, Auditoria, NoConformidad, Riesgo, Actividad, Empresa
+from app.documental import DocumentoSGC
+from app.formatos import FormatoSGC
+from app.capacitacion import TallerCapacitacion
+from app.indicadores import IndicadorDesempeno
 from app import db
 from datetime import datetime
 
@@ -120,21 +124,25 @@ def nueva_actividad():
 
     return render_template("nueva_actividad.html")
 
-@main.route("/documentos")
-def documentos():
-    return render_template("documentos.html")
+@main.route("/documental")
+def documental():
+    documentos = DocumentoSGC.query.all()
+    return render_template("documentos.html", documentos=documentos)
 
-@main.route("/no_conformidades")
-def no_conformidades():
-    return render_template("no_conformidades.html")
+@main.route("/formatos")
+def formatos():
+    formatos = FormatoSGC.query.all()
+    return render_template("formatos.html", formatos=formatos)
 
-@main.route("/acciones")
-def acciones():
-    return render_template("acciones.html")
+@main.route("/capacitacion/talleres")
+def talleres():
+    talleres = TallerCapacitacion.query.all()
+    return render_template("capacitacion.html", talleres=talleres)
 
-@main.route("/indicadores")
-def indicadores():
-    return render_template("indicadores.html")
+@main.route("/indicadores/desempeno")
+def indicadores_desempeno():
+    indicadores = IndicadorDesempeno.query.all()
+    return render_template("indicadores.html", indicadores=indicadores)
 
 @main.route("/clientes")
 def clientes():
@@ -183,3 +191,7 @@ def guardar_registro():
 
     flash("Registro guardado exitosamente.", "success")
     return redirect(url_for("main.index"))
+
+@main.route("/gestion")
+def gestion():
+    return render_template("gestion.html")

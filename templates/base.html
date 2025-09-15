@@ -13,11 +13,12 @@
 <body class="bg-gray-100">
   <!-- Encabezado con botón de menú -->
   <header class="bg-blue-600 text-white p-4 flex items-center shadow-md">
-    <h1 class="ml-4 text-xl font-bold">ISO 9001</h1>
-  </header>
+      <button id="menu-toggle" class="mr-4 bg-blue-800 px-2 py-1 rounded-lg focus:outline-none">☰</button>
+      <h1 class="ml-4 text-xl font-bold">ISO 9001</h1>
+    </header>
 
   <!-- Barra lateral desplegable -->
-  <aside id="sidebar" class="bg-gray-800 text-white w-64 space-y-6 py-7 px-2 absolute inset-y-0 left-0 transform -translate-x-full transition-transform duration-300 ease-in-out shadow-lg">
+  <aside id="sidebar" class="bg-gray-800 text-white w-64 space-y-6 py-7 px-2 fixed inset-y-0 left-0 transform -translate-x-full transition-transform duration-300 ease-in-out shadow-lg z-50">
     <nav>
         <a href="/" class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700">Dashboard</a>
         <a href="/capacitacion" class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700">Capacitación</a>
@@ -31,35 +32,36 @@
         <a href="/acciones" class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700">Acciones</a>
         <a href="/indicadores" class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700">Indicadores</a>
         <a href="/clientes" class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700">Clientes</a>
+        <a href="/gestion" class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700">Herramientas de Gestión</a>
     </nav>
   </aside>
 
   <!-- Contenido principal -->
-  <main class="flex-1 p-6">
+  <main class="flex-1 p-6 max-w-7xl mx-auto">
     {% block content %}
     <!-- Contenido principal organizado -->
     <section class="mb-8">
         <h2 class="text-2xl font-bold mb-4">Dashboard</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div class="card">
-                <h3 class="card-title">Cumplimiento SGC</h3>
-                <p class="card-value">82%</p>
+            <div class="card bg-white shadow-md rounded-lg p-4">
+                <h3 class="card-title text-lg font-bold mb-2">Cumplimiento SGC</h3>
+                <p class="card-value text-2xl text-blue-500 font-bold">82%</p>
             </div>
-            <div class="card">
-                <h3 class="card-title">Top Riesgos</h3>
+            <div class="card bg-white shadow-md rounded-lg p-4">
+                <h3 class="card-title text-lg font-bold mb-2">Top Riesgos</h3>
                 <ul class="list">
-                    <li class="list-item">
+                    <li class="list-item flex justify-between">
                         <span>Retraso en pruebas</span>
-                        <span class="badge badge-danger">Alta</span>
+                        <span class="badge badge-danger bg-red-500 text-white px-2 rounded">Alta</span>
                     </li>
-                    <li class="list-item">
+                    <li class="list-item flex justify-between">
                         <span>Falta de evidencias</span>
-                        <span class="badge badge-warning">Media</span>
+                        <span class="badge badge-warning bg-yellow-400 text-white px-2 rounded">Media</span>
                     </li>
                 </ul>
             </div>
-            <div class="card">
-                <h3 class="card-title">Actividades</h3>
+            <div class="card bg-white shadow-md rounded-lg p-4">
+                <h3 class="card-title text-lg font-bold mb-2">Actividades</h3>
                 <div class="flex justify-between">
                     <div>Pendientes</div>
                     <div class="text-yellow-500 font-bold">5</div>
@@ -73,21 +75,21 @@
                     <div class="text-green-500 font-bold">8</div>
                 </div>
             </div>
-            <div class="card">
-                <h3 class="card-title">Próximas Auditorías</h3>
+            <div class="card bg-white shadow-md rounded-lg p-4">
+                <h3 class="card-title text-lg font-bold mb-2">Próximas Auditorías</h3>
                 <ul class="list">
-                    <li class="list-item">
+                    <li class="list-item flex justify-between">
                         <span>Interna</span>
                         <span class="text-gray-500">2025-09-20</span>
                     </li>
-                    <li class="list-item">
+                    <li class="list-item flex justify-between">
                         <span>Externa</span>
                         <span class="text-gray-500">2025-10-10</span>
                     </li>
                 </ul>
             </div>
         </div>
-        <button class="btn btn-primary mt-6">+ Nueva Auditoría</button>
+        <button class="btn btn-primary mt-6 bg-blue-500 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-600">+ Nueva Auditoría</button>
     </section>
     {% endblock %}
   </main>

@@ -1,6 +1,31 @@
 {% extends "base.html" %}
 {% block title %}Gestión Documental{% endblock %}
 {% block content %}
-<h1>Gestión Documental</h1>
-<p>Contenido de la página de gestión documental.</p>
+<h1>Gestión Documental SGC</h1>
+<table class="w-full bg-white shadow-md rounded-lg overflow-hidden">
+    <thead class="bg-gray-200 text-gray-600 text-sm uppercase">
+        <tr>
+            <th class="px-4 py-2">Tipo</th>
+            <th class="px-4 py-2">Nombre</th>
+            <th class="px-4 py-2">Descripción</th>
+            <th class="px-4 py-2">Versión</th>
+            <th class="px-4 py-2">Responsable</th>
+            <th class="px-4 py-2">Fecha</th>
+            <th class="px-4 py-2">Enlace</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for doc in documentos %}
+        <tr>
+            <td class="border-t px-4 py-2">{{ doc.tipo }}</td>
+            <td class="border-t px-4 py-2">{{ doc.nombre }}</td>
+            <td class="border-t px-4 py-2">{{ doc.descripcion }}</td>
+            <td class="border-t px-4 py-2">{{ doc.version }}</td>
+            <td class="border-t px-4 py-2">{{ doc.responsable }}</td>
+            <td class="border-t px-4 py-2">{{ doc.fecha }}</td>
+            <td class="border-t px-4 py-2"><a href="{{ doc.url }}" target="_blank" class="text-blue-500 hover:underline">Ver</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
 {% endblock %}

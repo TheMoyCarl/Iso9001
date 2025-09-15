@@ -1,6 +1,27 @@
 {% extends "base.html" %}
 {% block title %}Indicadores{% endblock %}
 {% block content %}
-<h1>Indicadores</h1>
-<p>Contenido de la página de indicadores.</p>
+<h1>Indicadores de Desempeño</h1>
+<table class="w-full bg-white shadow-md rounded-lg overflow-hidden">
+    <thead class="bg-gray-200 text-gray-600 text-sm uppercase">
+        <tr>
+            <th class="px-4 py-2">Nombre</th>
+            <th class="px-4 py-2">Valor</th>
+            <th class="px-4 py-2">Unidad</th>
+            <th class="px-4 py-2">Fecha</th>
+            <th class="px-4 py-2">Responsable</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for indicador in indicadores %}
+        <tr>
+            <td class="border-t px-4 py-2">{{ indicador.nombre }}</td>
+            <td class="border-t px-4 py-2">{{ indicador.valor }}</td>
+            <td class="border-t px-4 py-2">{{ indicador.unidad }}</td>
+            <td class="border-t px-4 py-2">{{ indicador.fecha }}</td>
+            <td class="border-t px-4 py-2">{{ indicador.responsable }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
 {% endblock %}

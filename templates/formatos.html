@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Formatos SGC{% endblock %}
+{% block content %}
+<h1>Formatos Estandarizados</h1>
+<table class="w-full bg-white shadow-md rounded-lg overflow-hidden">
+    <thead class="bg-gray-200 text-gray-600 text-sm uppercase">
+        <tr>
+            <th class="px-4 py-2">Tipo</th>
+            <th class="px-4 py-2">Nombre</th>
+            <th class="px-4 py-2">Datos</th>
+            <th class="px-4 py-2">Responsable</th>
+            <th class="px-4 py-2">Fecha</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for formato in formatos %}
+        <tr>
+            <td class="border-t px-4 py-2">{{ formato.tipo }}</td>
+            <td class="border-t px-4 py-2">{{ formato.nombre }}</td>
+            <td class="border-t px-4 py-2">{{ formato.datos }}</td>
+            <td class="border-t px-4 py-2">{{ formato.responsable }}</td>
+            <td class="border-t px-4 py-2">{{ formato.fecha }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
