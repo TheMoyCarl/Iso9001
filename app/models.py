@@ -48,3 +48,19 @@ class Actividad(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     nombre = db.Column(db.String(200), nullable=False)
     estado = db.Column(db.String(50), nullable=False)  # Pendiente, En curso, Hecho
+
+class Empresa(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    razon_social = db.Column(db.String(100), nullable=False)
+    nit = db.Column(db.String(20), nullable=False, unique=True)
+    representante = db.Column(db.String(100), nullable=False)
+    sector = db.Column(db.String(50), nullable=False)
+    tipo_empresa = db.Column(db.String(50), nullable=False)
+    direccion = db.Column(db.String(200), nullable=False)
+    telefono = db.Column(db.String(20), nullable=False)
+    empleados = db.Column(db.Integer, nullable=False)
+    email = db.Column(db.String(100), nullable=False, unique=True)
+    web = db.Column(db.String(100), nullable=True)
+
+    def __repr__(self):
+        return f"<Empresa {self.razon_social}>"

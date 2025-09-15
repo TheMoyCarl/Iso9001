@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% block title %}Configuración{% endblock %}
+{% block content %}
+<h1 class="text-2xl font-bold mb-4">Configuración</h1>
+
+<!-- Indicadores -->
+<section class="mb-8">
+  <h2 class="text-xl font-semibold mb-4">Indicadores</h2>
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div class="bg-white shadow-md rounded-lg p-4">
+      <h3 class="text-lg font-bold">Eficiencia Operativa</h3>
+      <p class="text-2xl text-blue-500 font-bold">85%</p>
+    </div>
+    <div class="bg-white shadow-md rounded-lg p-4">
+      <h3 class="text-lg font-bold">Satisfacción del Cliente</h3>
+      <p class="text-2xl text-green-500 font-bold">92%</p>
+    </div>
+    <div class="bg-white shadow-md rounded-lg p-4">
+      <h3 class="text-lg font-bold">Tasa de No Conformidades</h3>
+      <p class="text-2xl text-red-500 font-bold">5%</p>
+    </div>
+  </div>
+</section>
+
+<!-- No Conformidades -->
+<section>
+  <h2 class="text-xl font-semibold mb-4">No Conformidades</h2>
+  <button class="bg-blue-500 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-600 mb-4" onclick="document.getElementById('modalNuevaNoConformidad').style.display='block'">+ Registrar No Conformidad</button>
+
+  <div id="modalNuevaNoConformidad" class="fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center hidden">
+    <div class="bg-white p-6 rounded-lg shadow-lg w-96">
+      <h2 class="text-lg font-semibold mb-4">Nueva No Conformidad</h2>
+      <form action="/no_conformidades/nueva" method="POST">
+        <label class="block mb-2">Descripción</label>
+        <textarea name="descripcion" class="border rounded-lg w-full mb-4 px-3 py-2"></textarea>
+
+        <label class="block mb-2">Severidad</label>
+        <input type="text" name="severidad" class="border rounded-lg w-full mb-4 px-3 py-2">
+
+        <label class="block mb-2">Responsable</label>
+        <input type="text" name="responsable" class="border rounded-lg w-full mb-4 px-3 py-2">
+
+        <div class="flex justify-end">
+          <button type="button" class="bg-gray-500 text-white px-4 py-2 rounded-lg mr-2" onclick="document.getElementById('modalNuevaNoConformidad').style.display='none'">Cancelar</button>
+          <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-lg">Guardar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <table class="w-full bg-white shadow-md rounded-lg overflow-hidden">
+    <thead class="bg-gray-200 text-gray-600 text-sm uppercase">
+      <tr>
+        <th class="px-4 py-2">Cód.</th>
+        <th class="px-4 py-2">Descripción</th>
+        <th class="px-4 py-2">Severidad</th>
+        <th class="px-4 py-2">Responsable</th>
+        <th class="px-4 py-2">Fecha</th>
+        <th class="px-4 py-2">Estado</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for no_conformidad in no_conformidades %}
+      <tr>
+        <td class="border-t px-4 py-2">{{ no_conformidad.codigo }}</td>
+        <td class="border-t px-4 py-2">{{ no_conformidad.descripcion }}</td>
+        <td class="border-t px-4 py-2">{{ no_conformidad.severidad }}</td>
+        <td class="border-t px-4 py-2">{{ no_conformidad.responsable }}</td>
+        <td class="border-t px-4 py-2">{{ no_conformidad.fecha }}</td>
+        <td class="border-t px-4 py-2">{{ no_conformidad.estado }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</section>
+{% endblock %}

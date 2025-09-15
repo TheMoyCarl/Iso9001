@@ -1,12 +1,82 @@
-{% extends "base.html" %}
+!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SGC ISO 9001 - Dashboard</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body class="bg-gray-100 font-sans">
+  {% extends "base.html" %}
 
-{% block content %}
-<h1>Panel de Seguimiento</h1>
+  {% block title %}Dashboard{% endblock %}
 
-<div>
-  <p>Cumplimiento SGC: {{ cumplimiento }}%</p>
-  <p>Auditorías este semestre: {{ auditorias }}</p>
-  <p>No conformidades abiertas: {{ no_conformidades }}</p>
-  <p>Satisfacción del cliente: {{ satisfaccion }}/5</p>
-</div>
-{% endblock %}
+  {% block content %}
+  <!-- Breadcrumbs -->
+  <nav class="text-sm text-gray-600 mb-4">
+    <a href="#" class="hover:underline">Inicio</a> / <a href="#" class="hover:underline">Dashboard</a>
+  </nav>
+
+  <!-- Dashboard Grid -->
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+    <!-- Card: % Cumplimiento -->
+    <div class="card">
+      <h3 class="card-title">Cumplimiento SGC</h3>
+      <p class="card-value">{{ cumplimiento }}%</p>
+    </div>
+
+    <!-- Card: Top Riesgos -->
+    <div class="card">
+      <h3 class="card-title">Top Riesgos</h3>
+      <ul class="list">
+        <li class="list-item">
+          <span>Retraso en pruebas</span>
+          <span class="badge badge-danger">Alta</span>
+        </li>
+        <li class="list-item">
+          <span>Falta de evidencias</span>
+          <span class="badge badge-warning">Media</span>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Card: Actividades -->
+    <div class="card">
+      <h3 class="card-title">Actividades</h3>
+      <div class="flex justify-between">
+        <div>Pendientes</div>
+        <div class="text-yellow-500 font-bold">5</div>
+      </div>
+      <div class="flex justify-between">
+        <div>En curso</div>
+        <div class="text-blue-500 font-bold">3</div>
+      </div>
+      <div class="flex justify-between">
+        <div>Completadas</div>
+        <div class="text-green-500 font-bold">8</div>
+      </div>
+    </div>
+
+    <!-- Card: Próximas Auditorías -->
+    <div class="card">
+      <h3 class="card-title">Próximas Auditorías</h3>
+      <ul class="list">
+        <li class="list-item">
+          <span>Interna</span>
+          <span class="text-gray-500">2025-09-20</span>
+        </li>
+        <li class="list-item">
+          <span>Externa</span>
+          <span class="text-gray-500">2025-10-10</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Botón Nueva Auditoría -->
+  <div class="mt-6">
+    <button class="btn btn-primary">+ Nueva Auditoría</button>
+  </div>
+  {% endblock %}
+</body>
+</html>

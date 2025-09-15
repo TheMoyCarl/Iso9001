@@ -1,137 +1,20 @@
-/* Estilos modernos y personalizados */
-body {
-    font-family: 'Poppins', sans-serif;
-    background-color: #1a1a2e;
-    color: #eaeaea;
-    margin: 0;
-    padding: 0;
-}
+document.addEventListener("DOMContentLoaded", function() {
+    console.log("ISO 9001 - App cargada correctamente");
 
-header {
-    background-color: #16213e;
-    color: #eaeaea;
-    padding: 20px;
-    text-align: center;
-    font-size: 1.8em;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
+    // Lógica para manejar eventos en la interfaz
+    const menuToggle = document.getElementById("menu-toggle");
+    const sidebar = document.getElementById("sidebar");
 
-nav {
-    background-color: #0f3460;
-    padding: 15px;
-    display: flex;
-    justify-content: center;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
+    // Controlar solo el botón del menú
+    menuToggle.addEventListener("click", function(event) {
+        event.stopPropagation(); // Evitar que el evento se propague
+        sidebar.classList.toggle("-translate-x-full"); // Alternar visibilidad de la barra lateral
+    });
 
-nav a {
-    margin: 0 20px;
-    text-decoration: none;
-    color: #eaeaea;
-    font-weight: bold;
-    transition: color 0.3s;
-}
-
-nav a:hover {
-    color: #00adb5;
-}
-
-.container {
-    padding: 30px;
-    max-width: 1200px;
-    margin: auto;
-}
-
-button {
-    background-color: #00adb5;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-button:hover {
-    background-color: #007bff;
-}
-
-input {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    width: 100%;
-    margin-bottom: 15px;
-}
-
-input:focus {
-    border-color: #00adb5;
-    outline: none;
-    box-shadow: 0 0 5px rgba(0, 173, 181, 0.5);
-}
-
-.sidebar {
-    background-color: #0f3460;
-    color: #eaeaea;
-    padding: 20px;
-    width: 250px;
-    position: fixed;
-    height: 100%;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-}
-
-.sidebar h2 {
-    font-size: 1.5em;
-    margin-bottom: 20px;
-}
-
-.sidebar ul {
-    list-style: none;
-    padding: 0;
-}
-
-.sidebar ul li {
-    margin-bottom: 15px;
-}
-
-.sidebar ul li a {
-    color: #eaeaea;
-    text-decoration: none;
-    font-weight: bold;
-    transition: color 0.3s;
-}
-
-.sidebar ul li a:hover {
-    color: #00adb5;
-}
-
-.content {
-    margin-left: 270px;
-    padding: 20px;
-}
-
-.table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-}
-
-.table th, .table td {
-    border: 1px solid #ccc;
-    padding: 10px;
-    text-align: left;
-}
-
-.table th {
-    background-color: #16213e;
-    color: #eaeaea;
-}
-
-.table tr:nth-child(even) {
-    background-color: #1a1a2e;
-}
-
-.table tr:hover {
-    background-color: #00adb5;
-    color: white;
-}
+    // Asegurar que la barra lateral se oculte al hacer clic fuera de ella
+    document.addEventListener("click", function(event) {
+        if (!sidebar.contains(event.target) && !menuToggle.contains(event.target)) {
+            sidebar.classList.add("-translate-x-full");
+        }
+    });
+});

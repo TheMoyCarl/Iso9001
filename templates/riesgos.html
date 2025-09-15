@@ -5,6 +5,29 @@
 <h2>Gestión de Riesgos</h2>
 <p>Aquí se registran los riesgos identificados en los proyectos.</p>
 
+<button class="bg-blue-500 text-white px-6 py-2 rounded-lg shadow hover:bg-blue-600" onclick="document.getElementById('modalNuevoRiesgo').style.display='block'">+ Nuevo Riesgo</button>
+
+<div id="modalNuevoRiesgo" class="fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center hidden">
+  <div class="bg-white p-6 rounded-lg shadow-lg w-96">
+    <h2 class="text-lg font-semibold mb-4">Nuevo Riesgo</h2>
+    <form action="/riesgos/nuevo" method="POST">
+      <label class="block mb-2">Riesgo</label>
+      <input type="text" name="riesgo" class="border rounded-lg w-full mb-4 px-3 py-2">
+
+      <label class="block mb-2">Impacto</label>
+      <input type="text" name="impacto" class="border rounded-lg w-full mb-4 px-3 py-2">
+
+      <label class="block mb-2">Plan de Acción</label>
+      <textarea name="plan" class="border rounded-lg w-full mb-4 px-3 py-2"></textarea>
+
+      <div class="flex justify-end">
+        <button type="button" class="bg-gray-500 text-white px-4 py-2 rounded-lg mr-2" onclick="document.getElementById('modalNuevoRiesgo').style.display='none'">Cancelar</button>
+        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-lg">Guardar</button>
+      </div>
+    </form>
+  </div>
+</div>
+
 <table border="1" cellpadding="10">
     <tr>
         <th>ID</th>
@@ -12,17 +35,13 @@
         <th>Impacto</th>
         <th>Plan de Acción</th>
     </tr>
+    {% for riesgo in riesgos %}
     <tr>
-        <td>1</td>
-        <td>Retraso en entregas</td>
-        <td>Alto</td>
-        <td>Establecer plan de contingencia con proveedores</td>
+        <td>{{ riesgo.id }}</td>
+        <td>{{ riesgo.riesgo }}</td>
+        <td>{{ riesgo.impacto }}</td>
+        <td>{{ riesgo.plan }}</td>
     </tr>
-    <tr>
-        <td>2</td>
-        <td>Falla en software</td>
-        <td>Medio</td>
-        <td>Pruebas adicionales antes de la entrega</td>
-    </tr>
+    {% endfor %}
 </table>
 {% endblock %}

@@ -1,22 +1,95 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>ISO 9001 - Sistema</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SGC ISO 9001</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/css/styles.css">
+  <script src="/static/js/scripts.js" defer></script>
 </head>
-<body>
-  <div class="sidebar">
-    <h2>SGC • ISO9001</h2>
-    <ul>
-      <li><a href="{{ url_for('main.dashboard') }}">Dashboard</a></li>
-      <li><a href="{{ url_for('main.auditorias') }}">Auditorías</a></li>
-      <li><a href="{{ url_for('main.riesgos') }}">Riesgos</a></li>
-      <li><a href="{{ url_for('main.actividades') }}">Actividades</a></li>
-    </ul>
-  </div>
-  <div class="content">
-    {% block content %}{% endblock %}
-  </div>
+<body class="bg-gray-100">
+  <!-- Encabezado con botón de menú -->
+  <header class="bg-blue-600 text-white p-4 flex items-center shadow-md">
+    <h1 class="ml-4 text-xl font-bold">ISO 9001</h1>
+  </header>
+
+  <!-- Barra lateral desplegable -->
+  <aside id="sidebar" class="bg-gray-800 text-white w-64 space-y-6 py-7 px-2 absolute inset-y-0 left-0 transform -translate-x-full transition-transform duration-300 ease-in-out shadow-lg">
+    <nav>
+        <a href="/" class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700">Dashboard</a>
+        <a href="/capacitacion" class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700">Capacitación</a>
+        <a href="/registro_iso" class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700">Registro ISO</a>
+        <a href="/configuracion" class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700">Configuraciones</a>
+        <a href="/auditorias" class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700">Auditorías</a>
+        <a href="/riesgos" class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700">Riesgos</a>
+        <a href="/actividades" class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700">Actividades</a>
+        <a href="/documentos" class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700">Documentos</a>
+        <a href="/no_conformidades" class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700">No Conformidades</a>
+        <a href="/acciones" class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700">Acciones</a>
+        <a href="/indicadores" class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700">Indicadores</a>
+        <a href="/clientes" class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700">Clientes</a>
+    </nav>
+  </aside>
+
+  <!-- Contenido principal -->
+  <main class="flex-1 p-6">
+    {% block content %}
+    <!-- Contenido principal organizado -->
+    <section class="mb-8">
+        <h2 class="text-2xl font-bold mb-4">Dashboard</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="card">
+                <h3 class="card-title">Cumplimiento SGC</h3>
+                <p class="card-value">82%</p>
+            </div>
+            <div class="card">
+                <h3 class="card-title">Top Riesgos</h3>
+                <ul class="list">
+                    <li class="list-item">
+                        <span>Retraso en pruebas</span>
+                        <span class="badge badge-danger">Alta</span>
+                    </li>
+                    <li class="list-item">
+                        <span>Falta de evidencias</span>
+                        <span class="badge badge-warning">Media</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3 class="card-title">Actividades</h3>
+                <div class="flex justify-between">
+                    <div>Pendientes</div>
+                    <div class="text-yellow-500 font-bold">5</div>
+                </div>
+                <div class="flex justify-between">
+                    <div>En curso</div>
+                    <div class="text-blue-500 font-bold">3</div>
+                </div>
+                <div class="flex justify-between">
+                    <div>Completadas</div>
+                    <div class="text-green-500 font-bold">8</div>
+                </div>
+            </div>
+            <div class="card">
+                <h3 class="card-title">Próximas Auditorías</h3>
+                <ul class="list">
+                    <li class="list-item">
+                        <span>Interna</span>
+                        <span class="text-gray-500">2025-09-20</span>
+                    </li>
+                    <li class="list-item">
+                        <span>Externa</span>
+                        <span class="text-gray-500">2025-10-10</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <button class="btn btn-primary mt-6">+ Nueva Auditoría</button>
+    </section>
+    {% endblock %}
+  </main>
 </body>
 </html>

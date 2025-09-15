@@ -1,28 +1,76 @@
-{% extends "base.html" %}
+{{% extends "base.html" %}
 {% block title %} Auditorías - ISO 9001 {% endblock %}
 
 {% block content %}
 <h2>Gestión de Auditorías</h2>
 <p>Aquí se listan y gestionan las auditorías internas y externas de los proyectos.</p>
 
+<button class="bg-blue-500 text-white px-6 py-2 rounded-lg shadow hover:bg-blue-600" onclick="document.getElementById('modalNuevaAuditoria').style.display='block'">+ Nueva Auditoría</button>
+
+<div id="modalNuevaAuditoria" class="fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center hidden">
+  <div class="bg-white p-6 rounded-lg shadow-lg w-96">
+    <h2 class="text-lg font-semibold mb-4">Nueva Auditoría</h2>
+    <form id="formNuevaAuditoria" action="/auditorias/nueva" method="POST">
+      <label class="block mb-2">Auditor</label>
+      <input type="text" name="auditor" class="border rounded-lg w-full mb-4 px-3 py-2">
+
+      <label class="block mb-2">Fecha</label>
+      <input type="date" name="fecha" class="border rounded-lg w-full mb-4 px-3 py-2">
+
+      <label class="block mb-2">Resultado</label>
+      <select name="resultado" class="border rounded-lg w-full mb-4 px-3 py-2">
+        <option value="Aprobado">Aprobado</option>
+        <option value="En Proceso">En Proceso</option>
+        <option value="Rechazado">Rechazado</option>
+      </select>
+
+      <label class="block mb-2">Observaciones</label>
+      <textarea name="observaciones" class="border rounded-lg w-full mb-4 px-3 py-2"></textarea>
+
+      <div class="flex justify-end">
+        <button type="button" class="bg-gray-500 text-white px-4 py-2 rounded-lg mr-2" onclick="document.getElementById('modalNuevaAuditoria').style.display='none'">Cancelar</button>
+        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-lg">Guardar</button>
+      </div>
+    </form>
+  </div>
+</div>
+
 <table border="1" cellpadding="10">
     <tr>
         <th>ID</th>
         <th>Fecha</th>
-        <th>Responsable</th>
-        <th>Estado</th>
+        <th>Auditor</th>
+        <th>Resultado</th>
+        <th>Observaciones</th>
     </tr>
+    {% for auditoria in auditorias %}
     <tr>
-        <td>1</td>
-        <td>2025-09-20</td>
-        <td>Juan Pérez</td>
-        <td>En Proceso</td>
+        <td>{{ auditoria.id }}</td>
+        <td>{{ auditoria.fecha }}</td>
+        <td>{{ auditoria.auditor }}</td>
+        <td>{{ auditoria.resultado }}</td>
+        <td>{{ auditoria.observaciones }}</td>
     </tr>
-    <tr>
-        <td>2</td>
-        <td>2025-10-01</td>
-        <td>Ana Gómez</td>
-        <td>Pendiente</td>
-    </tr>
+    {% endfor %}
 </table>
+
+<script>
+  document.getElementById('formNuevaAuditoria').addEventListener('submit', async function(event) {
+    event.preventDefault();
+
+    const formData = new FormData(this);
+    const response = await fetch(this.action, {
+      method: 'POST',
+      body: formData
+    });
+
+    if (response.ok) {
+      const newRow = await response.text();
+      document.querySelector('table tbody').insertAdjacentHTML('beforeend', newRow);
+      document.getElementById('modalNuevaAuditoria').style.display = 'none';
+    } else {
+      alert('Error al guardar la auditoría.');
+    }
+  });
+</script>
 {% endblock %}
